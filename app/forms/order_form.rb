@@ -3,7 +3,7 @@ class OrderForm
 
   def initialize(order, params)
     @order = order
-    @order.build_credit_card(params.require(:credit_card).permit!)
+    @order.build_credit_card(params.require(:credit_card, :shipping_option).permit!)
   end
 
   def save
