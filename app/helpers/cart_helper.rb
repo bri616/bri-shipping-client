@@ -9,9 +9,11 @@ module CartHelper
     allquotes = quotes.ups_quote.merge(quotes.usps_quote)
     # make an array of ShippingOption objects
 
-    allquotes.collect do |option_type, option_price|
+    allquotes.collect! do |option_type, option_price|
       ShippingOption.new(shipping_type: option_type, price: option_price.to_i)
     end
+
+    
   end
 
   def shipping_option_label(shipping_option)
