@@ -2,12 +2,15 @@ class ShippingQuery
   def initialize(weights,city,state, postal_code)
     @query = query(weights, city, state, postal_code)
     @shipping_api = "http://ship-my-ducks.herokuapp.com/"
+    # make an array of weights.length, each element is [20,20,20]
+    @dimensions = weights.length.times.collect{[20,20,20]}
   end
 
   def query(weights, city, state, postal_code)
     @query =
     {:package_specs => {
-      :weights => weights
+      :weights => weights,
+      :dimensions => @dimensions
     },
 
     :origin_specs => {
