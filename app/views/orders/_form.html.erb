@@ -38,8 +38,11 @@
         <%= f.fields_for :shipping_option do |so| %>
           <% shipping_options(current_order.address, current_order.items).each do |shipping_option| %>
           <div class='form-group'>
-            <%= so.label :shipping_type, shipping_option_label(shipping_option) %>
-            <%= so.radio_button :shipping_type, class: "form-control" %>
+            <%= so.label :shipping_type do %>
+              <%= shipping_option_label(shipping_option) %>
+              <%= so.radio_button :shipping_type, shipping_option.shipping_type %>
+              <%= so.hidden_field :price, :value => shipping_option.price%>
+            <% end %>
           </div>
           <% end %>
         <% end %>
