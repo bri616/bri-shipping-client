@@ -41,7 +41,7 @@
             <%= so.label :shipping_type do %>
               <%= shipping_option_label(shipping_option) %>
               <%= so.radio_button :shipping_type, shipping_option.shipping_type %>
-              <%= so.hidden_field :price, :value => shipping_option.price%>
+              <%= so.hidden_field :price_cents, :value => shipping_option.price_cents%>
             <% end %>
           </div>
           <% end %>

@@ -11,18 +11,18 @@ module CartHelper
     # make an array of ShippingOption objects
 
     upsquotes = upsquotes.collect do |option_type, option_price|
-      ShippingOption.new(shipping_type: option_type, price: option_price.to_i)
+      ShippingOption.new(shipping_type: option_type, price_cents: option_price.to_i)
     end
 
     uspsquotes = uspsquotes.collect do |option_type, option_price|
-      ShippingOption.new(shipping_type: option_type, price: option_price.to_i)
+      ShippingOption.new(shipping_type: option_type, price_cents: option_price.to_i)
     end
 
-    upsquotes.sort_by(&:price).first(3) + uspsquotes.sort_by(&:price).first(3)
+    upsquotes.sort_by(&:price_cents).first(3) + uspsquotes.sort_by(&:price_cents).first(3)
 
   end
 
   def shipping_option_label(shipping_option)
-    "#{shipping_option.shipping_type} #{shipping_option.price}"
+    "#{shipping_option.shipping_type} #{shipping_option.price.format}"
   end
 end
